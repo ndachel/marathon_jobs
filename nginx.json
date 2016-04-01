@@ -1,0 +1,16 @@
+{
+  "id": "nginx-clear",
+  "cpus": 0.1,
+  "mem": 64.0,
+  "instances": 3,
+  "container": {
+    "type": "DOCKER",
+    "docker": {
+      "image": "nginx:1.7.7",
+      "network": "BRIDGE",
+      "portMappings": [
+        { "containerPort": 8080, "hostPort": 0, "servicePort": 9000, "protocol": "tcp" }
+      ]
+    }
+  }
+}

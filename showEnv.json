@@ -1,0 +1,13 @@
+{
+    "cmd": "env && whoami && sleep 10",
+    "cpus": 0.1,
+    "mem": 2,
+    "id": "show-env",
+    "instances": 1,
+    "env" : {
+      "http_proxy" : "http://web-proxy.corp.hpecorp.net:8080",
+      "https_proxy": "http://web-proxy.corp.hpecorp.net:8080",
+      "no_proxy"   : "localhost,127.0.0.1,192.168.33.10,192.168.33.11,192.168.33.12,192.168.33.20,192.168.33.21,192.168.33.22"
+    },
+    "constraints": [["hostname", "CLUSTER", "master1"]]
+}

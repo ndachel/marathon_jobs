@@ -1,0 +1,69 @@
+{  
+  "id":"/nginx-depends",
+  "groups":[
+    {
+      "id":"/nginx-depends/containers-primary",
+      "apps": [
+	{
+	  "id": "/nginx-depends/nginx-primary",
+	  "cpus": 0.1,
+	  "mem": 64.0,
+	  "instances": 2,
+	  "container": {
+	    "type": "DOCKER",
+	    "docker": {
+	      "image": "nelsd/nginx-blue:latest",
+	      "network": "BRIDGE",
+	      "portMappings": [
+		{ "containerPort": 80, "hostPort": 0, "servicePort": 10000, "protocol": "tcp" }
+	      ]
+	    }
+	  },
+	  "healthChecks": [
+	    {
+	      "protocol": "HTTP",
+	      "portIndex": 0,
+	      "path": "/",
+	      "gracePeriodSeconds": 5,
+	      "intervalSeconds": 20,
+	      "maxConsecutiveFailures": 3
+	    }
+	  ]
+	}
+      ]
+    },
+    {
+      "id":"/nginx-depends/containers-secondary",
+      "dependencies": ["/nginx-depends/containers-primary"],
+      "apps":[
+        {
+          "id": "/nginx-depends/nginx-secondary",
+          "cpus": 0.1,
+          "mem": 64.0,
+          "instances": 2,
+          "container": {
+            "type": "DOCKER",
+            "docker": {
+              "image": "nelsd/nginx-green:latest",
+              "network": "BRIDGE",
+              "portMappings": [
+                { "containerPort": 80, "hostPort": 0, "servicePort": 10002, "protocol": "tcp" }
+              ]
+            }
+          },
+          "healthChecks": [
+            {
+              "protocol": "HTTP",
+              "portIndex": 0,
+              "path": "/",
+              "gracePeriodSeconds": 5,
+              "intervalSeconds": 20,
+              "maxConsecutiveFailures": 3
+            }
+          ]
+        }
+
+      ]
+    }
+  ]
+}
