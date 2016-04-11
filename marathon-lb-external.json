@@ -1,5 +1,5 @@
 {
-  "id": "/marathon-lb-nels",
+  "id": "/marathon-lb-external",
   "haproxy-group":"external",
   "instances": 1,
   "mem": 128,

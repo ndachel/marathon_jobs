@@ -2,7 +2,7 @@
   "id": "nginx-blue",
   "cpus": 0.1,
   "mem": 64.0,
-  "instances": 1,
+  "instances": 4,
   "container": {
     "type": "DOCKER",
     "docker": {
@@ -22,5 +22,8 @@
       "intervalSeconds": 20,
       "maxConsecutiveFailures": 3
     }
-  ]
+  ],
+  "labels":{
+    "HAPROXY_GROUP":"external"
+  }
 }

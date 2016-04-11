@@ -1,5 +1,5 @@
 {
-  "id": "nginx-blue",
+  "id": "nginx-green",
   "cpus": 0.2,
   "mem": 64.0,
   "instances": 4,
@@ -9,7 +9,7 @@
       "image": "nelsd/nginx-green:latest",
       "network": "BRIDGE",
       "portMappings": [
-        { "containerPort": 80, "hostPort": 0, "servicePort": 9000, "protocol": "tcp" }
+        { "containerPort": 80, "hostPort": 0, "servicePort": 10001, "protocol": "tcp" }
       ]
     }
   },
@@ -22,5 +22,8 @@
       "intervalSeconds": 20,
       "maxConsecutiveFailures": 3
     }
-  ]
+  ],
+  "labels":{
+    "HAPROXY_GROUP":"external"
+  }
 }

@@ -1,6 +1,6 @@
 {
-  "id": "/marathon-lb-nels",
-  "haproxy-group":"external",
+  "id": "/marathon-lb",
+  "haproxy-group":"internal",
   "instances": 1,
   "mem": 128,
   "cpus": 0.5,
