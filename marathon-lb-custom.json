@@ -1,10 +1,10 @@
 {
-  "id": "/marathon-lb-nels",
+  "id": "/marathon-lb",
   "haproxy-group":"external",
   "instances": 1,
-  "mem": 128,
+  "mem": 512,
   "cpus": 0.5,
-  "constraints": [["hostname","CLUSTER","slave1"]],
+  "constraints": [["hostname","CLUSTER","16.250.22.8"]],
   "args": [ "sse", "--marathon", "http://master.mesos:8080", "--health-check", "--group", "external" ],
   "container": {
     "docker": {
@@ -28,7 +28,6 @@
     }
   ],
   "env": {
-    "NO_PROXY": "192.168.33.10,192.168.33.20,192.168.33.11,192.168.33.21",
     "FRAMEWORK_NAME": "",
     "HAPROXY_SSL_CERT": "",
     "HAPROXY_SYSCTL_PARAMS": "net.ipv4.tcp_tw_reuse=1 net.ipv4.tcp_fin_timeout=30 net.ipv4.tcp_max_syn_backlog=10240 net.ipv4.tcp_max_tw_buckets=400000 net.ipv4.tcp_max_orphans=60000 net.core.somaxconn=10000",
