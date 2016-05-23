@@ -8,8 +8,8 @@
     "volumes":[ 
       { 
         "containerPath": "/var/lib/registry", 
-        "hostPath": "/opt/mount1/gluster/docker_storage", "mode": "RW" 
-      } 
+        "hostPath": "/opt/mount1/gluster/docker_storage", "mode": "RW"
+      }
     ],
     "docker": {
       "image": "registry:2",
@@ -17,7 +17,10 @@
       "portMappings": [ { "containerPort": 5000, "hostPort": 5000, "servicePort": 0, "protocol": "tcp", "labels": {} } ]
     }
   },
-  "env": { "SETTINGS_FLAVOR": "local", "STORAGE_PATH": "/docker_storage" },
+  "env": { 
+      "SETTINGS_FLAVOR": "local", 
+      "STORAGE_PATH": "/docker_storage"
+ },
   "constraints": [["hostname","CLUSTER","172.16.1.20"]],
   "healthChecks" : [
     {

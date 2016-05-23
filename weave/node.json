@@ -1,0 +1,19 @@
+{
+  "id": "/monsterz/apps/monsterz-den",
+  "cpus": 0.1,
+  "mem": 32,
+  "instances": 2,
+  "container": {
+    "type": "DOCKER",
+    "docker": {
+      "image": "thepixelmonsterzapp/monsterz-den:latest",
+      "network": "BRIDGE",
+      "forcePullImage": true,
+      "portMappings": [{
+          "containerPort": 8080,
+          "hostPort": 18001,
+          "protocol": "tcp"
+      }]
+    }
+  }
+}

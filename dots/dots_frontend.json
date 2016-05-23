@@ -1,12 +1,12 @@
 {
-  "id": "nginx-blue",
+  "id": "dots_frontend",
   "cpus": 0.1,
   "mem": 64.0,
   "instances": 4,
   "container": {
     "type": "DOCKER",
     "docker": {
-      "image": "nelsd/nginx-blue:latest",
+      "image": "nelsd/dots_front:latest",
       "network": "BRIDGE",
       "portMappings": [
         { "containerPort": 80, "hostPort": 0, "protocol": "tcp" }

@@ -1,0 +1,42 @@
+{
+  "id": "private-registry-v1",
+  "cpus": 0.5,
+  "mem": 1024,
+  "instances": 1,
+  "container": {
+    "type": "DOCKER",
+    "volumes":[ 
+      { 
+        "containerPath": "/var/lib/registry", 
+        "hostPath": "/opt/mount1/gluster/reg_v1/docker_storage", "mode": "RW" 
+      },
+      {
+        "containerPath": "/certs",
+        "hostPath": "/opt/mount1/gluster/reg_v1/certs"
+      }
+    ],
+    "docker": {
+      "image": "registry",
+      "network": "BRIDGE",
+      "portMappings": [ { "containerPort": 5000, "hostPort": 5001, "servicePort": 0, "protocol": "tcp", "labels": {} } ]
+    }
+  },
+  "env": 
+    { 
+      "SETTINGS_FLAVOR": "local", 
+      "STORAGE_PATH": "/docker_storage",
+      "REGISTRY_HTTP_TLS_CERTIFICATE":"/certs/domain.cert",
+      "REGISTRY_HTTP_TLS_KEY":"/certs/domain.key"
+    },
+  "constraints": [["hostname","CLUSTER","172.16.1.20"]],
+  "healthChecks" : [
+    {
+      "path":"/v1/_ping",
+      "portIndex": 0,
+      "protocol":"HTTP",
+      "gracePeriodSeconds": 30,
+      "timeoutSeconds": 60,
+      "maxConsecutiveFailures" : 5
+    }
+  ]
+}

@@ -4,7 +4,7 @@
   "instances": 1,
   "mem": 512,
   "cpus": 0.5,
-  "constraints": [["hostname","CLUSTER","16.250.22.8"]],
+  "constraints": [["hostname","CLUSTER","172.16.1.21"]],
   "args": [ "sse", "--marathon", "http://master.mesos:8080", "--health-check", "--group", "external" ],
   "container": {
     "docker": {

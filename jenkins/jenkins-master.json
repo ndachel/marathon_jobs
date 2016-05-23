@@ -12,7 +12,7 @@
       "forcePullImage": true
     },
     "volumes": [
-      { "containerPath": "/var/lib/jenkins", "hostPath": "/mnt/nfs/jenkins", "mode": "RW" }
+      { "containerPath": "/var/lib/jenkins", "hostPath": "/opt/mount1/gluster/jenkins", "mode": "RW" }
     ]
   },
   "env": {

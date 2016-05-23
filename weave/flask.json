@@ -1,0 +1,31 @@
+{
+  "id": "/monsterz/apps/hello",
+  "cpus": 0.1,
+  "mem": 32,
+  "instances": 2,
+  "container": {
+    "type": "DOCKER",
+    "docker": {
+      "image": "thepixelmonsterzapp/hello:latest",
+      "network": "BRIDGE",
+      "forcePullImage": true,
+      "portMappings": [{
+          "containerPort": 9090,
+          "hostPort": 18000,
+          "protocol": "tcp"
+      }]
+    }
+  },
+  "labels": {
+    "DCOS_SERVICE_NAME": "monsterz",
+    "DCOS_SERVICE_SCHEME": "http",
+    "DCOS_SERVICE_PORT_INDEX": "0"
+  },
+  "env": {
+    "MONSTERZ_DEN_HOST": "monsterz-den-apps-monsterz.marathon.mesos",
+    "MONSTERZ_DEN_PORT": "18001",
+    "REDIS_HOST": "redis-data-monsterz.marathon.mesos",
+    "REDIS_PORT": "18002",
+    "ENV": "DEV"
+  }
+}

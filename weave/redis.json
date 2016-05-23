@@ -1,0 +1,19 @@
+{
+  "id": "/monsterz/data/redis",
+  "cpus": 0.5,
+  "mem": 64,
+  "instances": 1,
+  "container": {
+    "type": "DOCKER",
+    "docker": {
+      "image": "redis:3",
+      "network": "BRIDGE",
+      "forcePullImage": false,
+      "portMappings": [{
+          "containerPort": 6379,
+          "hostPort": 18002,
+          "protocol": "tcp"
+      }]
+    }
+  }
+}
