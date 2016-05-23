@@ -1,15 +1,15 @@
 {
-  "id": "nginx-blue",
+  "id": "nginx-red",
   "cpus": 0.1,
   "mem": 64.0,
-  "instances": 4,
+  "instances": 6,
   "container": {
     "type": "DOCKER",
     "docker": {
-      "image": "nelsd/nginx-blue:latest",
+      "image": "nelsd/nginx-red:latest",
       "network": "BRIDGE",
       "portMappings": [
-        { "containerPort": 80, "hostPort": 18001, "protocol": "tcp" }
+        { "containerPort": 80, "hostPort": 0, "protocol": "tcp" }
       ]
     }
   },
