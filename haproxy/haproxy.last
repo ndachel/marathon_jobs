@@ -50,4 +50,6 @@ listen stats
 
     stats uri /haproxy_stats
     stats realm HAProxy\ Statistics
+    stats auth admin:dc14-@dmin
+
     stats admin if TRUE
