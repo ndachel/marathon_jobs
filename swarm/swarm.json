@@ -1,0 +1,49 @@
+{
+  "id": "/swarm",
+  "cmd": "SWARM_MESOS_USER=root SWARM_MESOS_OFFER_TIMEOUT=30s swarm --debug m -H :$PORT0 -c mesos-experimental zk://master.mesos:2181/mesos",
+  "cpus": 1,
+  "mem": 512,
+  "disk": 0,
+  "instances": 1,
+  "container": {
+    "type": "DOCKER",
+    "volumes": [],
+    "docker": {
+      "image": "dockerswarm/swarm:master",
+      "network": "HOST",
+      "privileged": false,
+      "parameters": [],
+      "forcePullImage": false
+    }
+  },
+  "healthChecks": [
+    {
+      "path": "/_ping",
+      "protocol": "HTTP",
+      "portIndex": 0,
+      "gracePeriodSeconds": 5,
+      "intervalSeconds": 60,
+      "timeoutSeconds": 10,
+      "maxConsecutiveFailures": 3,
+      "ignoreHttp1xx": false
+    }
+  ],
+  "labels": {
+    "DCOS_PACKAGE_RELEASE": "0",
+    "DCOS_PACKAGE_SOURCE": "https://universe.mesosphere.com/repo",
+    "DCOS_PACKAGE_COMMAND": "eyJwaXAiOlsiaHR0cHM6Ly9kb3dubG9hZHMubWVzb3NwaGVyZS5jb20vZGNvcy9zd2FybS9kY29zX3N3YXJtLTAuMS4wLXB5Mi5weTMtbm9uZS1hbnkud2hsIl19",
+    "DCOS_PACKAGE_METADATA": "eyJsaWNlbnNlcyI6W3sibmFtZSI6IkFwYWNoZSBMaWNlbnNlIFZlcnNpb24gMi4wIiwidXJsIjoiaHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL2RvY2tlci9zd2FybS9tYXN0ZXIvTElDRU5TRSJ9XSwibmFtZSI6InN3YXJtIiwicG9zdEluc3RhbGxOb3RlcyI6IlN3YXJtIGlzIGluc3RhbGxlZCBpbiB5b3VyIGNsdXN0ZXIuIFBsZWFzZSBgZXZhbCAkKGRjb3Mgc3dhcm0gZW52KWAgdG8gc2V0IERPQ0tFUl9IT1NUIGVudmlyb25tZW50IHZhcmlhYmxlIGFuZCB1c2UgeW91ciBkb2NrZXIgY2xpZW50IHRvIGludGVyYWN0IHdpdGggc3dhcm0uIiwic2NtIjoiaHR0cHM6Ly9naXRodWIuY29tL2RvY2tlci9zd2FybS5naXQiLCJkZXNjcmlwdGlvbiI6IlN3YXJtIGlzIGEgRG9ja2VyLW5hdGl2ZSBjbHVzdGVyaW5nIHN5c3RlbS4iLCJwYWNrYWdpbmdWZXJzaW9uIjoiMi4wIiwidGFncyI6WyJkb2NrZXIiXSwicG9zdFVuaW5zdGFsbE5vdGVzIjoiVGhlIERvY2tlciBTd2FybSBEQ09TIFNlcnZpY2UgaGFzIGJlZW4gdW5pbnN0YWxsZWQgYW5kIHdpbGwgbm8gbG9uZ2VyIHJ1bi5cbk5vdGUgdGhhdCBhbnkgZG9ja2VyIGNvbnRhaW5lciB0aGF0IGlzIGxhdW5jaGVkIGFuZCBzdGlsbCBydW5uaW5nIGZyb20gc3dhcm0gd2lsbCBiZSBrZXB0IHJ1bm5pbmcuIiwibWFpbnRhaW5lciI6InN1cHBvcnRAbWVzb3NwaGVyZS5pbyIsImZyYW1ld29yayI6dHJ1ZSwidmVyc2lvbiI6IjAuNC4wIiwicHJlSW5zdGFsbE5vdGVzIjoiTm90ZSB0aGF0IHRoZSBEb2NrZXIgU3dhcm0gRENPUyBTZXJ2aWNlIGlzIGJldGEgYW5kIHRoZXJlIG1heSBiZSBidWdzLCBpbmNvbXBsZXRlIGZlYXR1cmVzLCBpbmNvcnJlY3QgZG9jdW1lbnRhdGlvbiBvciBvdGhlciBkaXNjcmVwYW5jaWVzLiIsImltYWdlcyI6eyJpY29uLXNtYWxsIjoiaHR0cHM6Ly9kb3dubG9hZHMubWVzb3NwaGVyZS5jb20vdW5pdmVyc2UvYXNzZXRzL2ljb24tc2VydmljZS1zd2FybS1zbWFsbC5wbmciLCJpY29uLW1lZGl1bSI6Imh0dHBzOi8vZG93bmxvYWRzLm1lc29zcGhlcmUuY29tL3VuaXZlcnNlL2Fzc2V0cy9pY29uLXNlcnZpY2Utc3dhcm0tbWVkaXVtLnBuZyIsImljb24tbGFyZ2UiOiJodHRwczovL2Rvd25sb2Fkcy5tZXNvc3BoZXJlLmNvbS91bml2ZXJzZS9hc3NldHMvaWNvbi1zZXJ2aWNlLXN3YXJtLWxhcmdlLnBuZyIsInNjcmVlbnNob3RzIjpudWxsfX0=",
+    "DCOS_PACKAGE_REGISTRY_VERSION": "2.0",
+    "DCOS_PACKAGE_FRAMEWORK_NAME": "swarm",
+    "DCOS_PACKAGE_VERSION": "0.4.0",
+    "DCOS_PACKAGE_NAME": "swarm",
+    "DCOS_PACKAGE_IS_FRAMEWORK": "true"
+  },
+  "portDefinitions": [
+    {
+      "port": 10007,
+      "protocol": "tcp",
+      "labels": {}
+    }
+  ]
+}

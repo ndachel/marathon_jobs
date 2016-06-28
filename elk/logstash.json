@@ -1,0 +1,21 @@
+{
+  "id": "logstash",
+  "cpus": 1,
+  "mem": 1024,
+  "instances": 1,
+  "container": {
+    "type": "DOCKER",
+    "volumes": [
+      {
+        "containerPath": "/config-dir/",
+        "hostPath": "/opt/mount1/gluster/elk/logstash/",
+        "mode": "RW"
+      }
+    ],
+    "docker": {
+      "image": "logstash",
+      "network": "HOST"
+    }
+  },
+  "args": ["-v"]
+}

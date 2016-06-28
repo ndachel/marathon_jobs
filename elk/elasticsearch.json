@@ -1,0 +1,35 @@
+{
+  "id": "elasticsearch",
+  "cpus": 1,
+  "mem": 1024,
+  "instances": 1,
+  "container": {
+    "type": "DOCKER",
+    "volumes": [
+      {
+        "containerPath": "/usr/share/elasticsearch/config",
+        "hostPath": "/opt/mount1/gluster/elk/elasticsearch/config",
+        "mode": "RW"
+      },
+      {
+        "containerPath": "/usr/share/elasticsearch/data",
+        "hostPath": "/opt/mount1/gluster/elk/elasticsearch/data",
+        "mode": "RW"
+      }
+    ],
+    "docker": {
+      "image": "elasticsearch",
+      "network": "HOST"
+    }
+  },
+  "healthChecks": [
+    {
+      "protocol": "HTTP",
+      "port": 9200,
+      "path": "/_nodes",
+      "gracePeriodSeconds": 5,
+      "intervalSeconds": 20,
+      "maxConsecutiveFailures": 3
+    }
+  ]
+}
