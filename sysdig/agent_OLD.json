@@ -1,0 +1,38 @@
+{
+  "id": "sysdig-agent",
+  "cpus": 0.1,
+  "mem": 64.0,
+  "instances":7,
+  "constraints": [["hostname","UNIQUE"]],
+  "container": {
+    "type": "DOCKER",
+    "docker": {
+      "image": "sysdig/agent",
+      "network": "HOST",
+      "priviledged" : true,
+      "parameters" : [
+        {"key" : "pid", "value": "host"},
+        {"key" : "log-driver", "value": "syslog"},
+        {"key" : "log-opt", "value" : "syslog-address=tcp://dcos-monitor:5000"},
+        {"key" : "log-opt", "value" : "tag=nginx-red"}
+      ]
+    },
+    "volumes": [
+      { "containerPath": "/var/run/docker.sock", "hostPath": "/host/var/run/docker.sock", "mode": "RW"},
+      { "containerPath": "/dev",                 "hostPath": "/host/dev", "mode": "RW"},
+      { "containerPath": "/proc",                "hostPath": "/host/proc", "mode": "RO"},
+      { "containerPath": "/boot",                "hostPath": "/host/boot", "mode": "RO"},
+      { "containerPath": "/lib/modules",         "hostPath": "/host/lib/modules", "mode": "RO"},
+      { "containerPath": "/usr",                 "hostPath": "/host/usr", "mode": "RO"}
+    ]
+  },
+  "env": {
+    "ACCESS_KEY": "897a7042-8953-4c6e-8db1-85ae768550d3",
+    "COLLECTOR": "172.16.1.73",
+    "COLLECTOR_PORT": "6443",
+    "CHECK_CERTIFICATE": "false",
+    "TAGS": "role:mesos-agent",
+    "JENKINS_FRAMEWORK_NAME": "Jenkins Scheduler",
+    "JENKINS_MESOS_MASTER": "zk://{{ zookeeper_hostnames }}/mesos"
+  }
+}

@@ -23,7 +23,7 @@
     {
       "protocol": "HTTP",
       "portIndex": 0,
-      "path": "/",
+      "path": "/health.html",
       "gracePeriodSeconds": 5,
       "intervalSeconds": 20,
       "maxConsecutiveFailures": 3
