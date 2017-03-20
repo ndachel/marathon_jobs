@@ -13,7 +13,7 @@
       ],
       "parameters" : [
         {"key" : "log-driver", "value": "syslog"},
-        {"key" : "log-opt", "value" : "syslog-address=tcp://dcos-monitor:5000"},
+        {"key" : "log-opt", "value" : "syslog-address=tcp://172.16.1.71:5000"},
         {"key" : "log-opt", "value" : "tag=nginx-green"}
       ]
     }
