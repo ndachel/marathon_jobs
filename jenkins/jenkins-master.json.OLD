@@ -1,0 +1,39 @@
+{
+  "id": "jenkins-server",
+  "instances": 1,
+  "cpus": 1,
+  "mem": 2048,
+  "env": {
+    "http_proxy": "http://web-proxy.corp.hpecorp.net:8080",
+    "https_proxy": "http://web-proxy.corp.hpecorp.net:8080"
+  },
+  "container": {
+    "type": "DOCKER",
+    "docker": {
+      "image": "jenkins:2.19.1",
+      "network": "BRIDGE",
+      "portMappings": [
+        { "containerPort": 8080, "hostPort": 0, "servicePort": 10000, "protocol": "tcp"},
+        { "containerPort": 50000,"hostPort": 0, "servicePort": 10001, "protocol": "tcp"}
+      ]
+    },
+    "volumes": [
+      { "containerPath": "/var/lib/jenkins", "hostPath": "/opt/gluster/jenkins", "mode": "RW" }
+    ]
+  },
+  "labels": {
+    "DCOS_SERVICE_NAME": "jenkins",
+    "DCOS_SERVICE_SCHEME": "http", 
+    "DCOS_SERVICE_PORT_INDEX": "0"
+  },
+  "env": {
+    "JENKINS_JAVA_OPTIONS": "-Dhudson.slaves.NodeProvisioner.MARGIN=40 -Dhudson.slaves.NodeProvisioner.MARGIN0=0.75 -Xms512m -Xmx2000m -Djava.awt.headless=true -Djava.net.preferIPv4Stack=true -Dorg.apache.commons.jelly.tags.fmt.timeZone=America/Denver",
+    "JENKINS_CMDLINE_OPTIONS": "--httpPort=8888",
+    "JENKINS_PORT": "8888",
+    "JENKINS_HOME": "/var/lib/jenkins",
+    "JENKINS_FRAMEWORK_NAME": "Jenkins Scheduler",
+    "JENKINS_MESOS_MASTER": "zk://leader.mesos:2181/mesos",
+    "HTTP_PROXY": "http://web-proxy.corp.hpecorp.net:8080",
+    "HTTPS_PROXY": "http://web-proxy.corp.hpecorp.net:8080"
+  }
+}

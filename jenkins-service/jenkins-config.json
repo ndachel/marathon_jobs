@@ -1,0 +1,28 @@
+{
+  "service": {
+    "name": "jenkins",
+    "cpus": 1,
+    "mem": 2048
+  },
+  "storage": {
+    "host-volume": "/opt/gluster/jenkins",
+    "pinned-hostname": "172.16.1.150"
+  },
+  "networking": {
+    "known-hosts": "github.com",
+    "https-redirect": false
+  },
+  "roles": {
+    "jenkins-master-role": "*",
+    "jenkins-agent-role": "*"
+  },
+  "security": {
+    "strict-mode": false,
+    "strict-mode-user": "nobody"
+  },
+  "advanced": {
+    "mesos-master": "zk://leader.mesos:2181/mesos",
+    "jvm-opts": "-Xms1024m -Xmx1024m",
+    "docker-image": "nelsd/dcos-jenkins"
+  }
+}

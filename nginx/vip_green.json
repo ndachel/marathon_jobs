@@ -1,0 +1,27 @@
+{
+  "id": "vip-green",
+  "cpus": 0.1,
+  "mem": 64.0,
+  "instances": 10,
+  "container": {
+    "type": "DOCKER",
+    "docker": {
+      "image": "nelsd/nginx-green:latest",
+      "network": "BRIDGE",
+      "portMappings": [
+        {
+          "containerPort": 80,
+          "protocol": "tcp",
+          "name": "http",
+          "labels": {
+            "VIP_0": "192.168.0.100:80"
+          }
+        }
+      ]
+    }
+  },
+  "labels": {
+    "HAPROXY_0_VHOST": "vip-green.dcos.g4ihos.itcs.hpecorp.net",
+    "HAPROXY_GROUP": "external"
+  }
+}
